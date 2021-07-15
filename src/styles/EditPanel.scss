@@ -1,0 +1,58 @@
+@use 'Mixins';
+@use 'Colors';
+
+.edit-panel-close {
+    display: none;
+}
+
+.edit-panel-open {
+    @include Mixins.center-all;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(60, 60, 60, .8);
+}
+
+.alert-box {
+    background-color: Colors.$main-background-light;
+    padding: 40px;
+    border-radius: 10px;
+    width: 25%;
+    @include Mixins.center-all;
+
+    p {
+        text-align: center;
+    }
+    input {
+        height: 1.5em;
+        width: 100%;
+    }
+    button {
+        margin: 10px 0;
+        padding: 10px;
+        min-width: 45%;
+        font-weight: bold;
+        color: Colors.$main-background-light;
+        transition: transform .25s;
+    }
+    button:hover {
+        transform: scale(1.1);
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-edit {
+    background-color: Colors.$green;
+}
+.btn-cancel {
+    background-color: Colors.$yellow;
+}
+.btn-delete {
+    background-color: Colors.$red;
+}

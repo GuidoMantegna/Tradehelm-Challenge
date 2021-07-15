@@ -1,0 +1,48 @@
+@use 'Colors';
+@use 'Mixins';
+
+ol {
+    width: 60%;
+    list-style: none;
+    counter-reset: counter;
+    padding: 0 50px;
+
+    li {
+        counter-increment: counter;
+        background-color: white;
+        margin: 15px 0;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgb(200, 200, 200);
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    li::before {
+        content: counter(counter);
+        background: linear-gradient(135deg, Colors.$blue 0%, Colors.$green 100%);
+        border-radius: 10px;
+        border-bottom-right-radius: 0;
+        position: absolute;
+        top: -12px;
+        left: -18px;
+        padding: 14px 5px 2px 18px;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+    
+}
+
+i {
+    color: #616161;
+    cursor: pointer;
+}
+
+i:hover {
+    color: rgb(20, 20, 20);
+}
+
+.bi-pencil {
+    margin-right: 7.5px;
+}

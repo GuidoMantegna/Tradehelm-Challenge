@@ -1,0 +1,28 @@
+@use 'Mixins';
+@use 'Colors';
+
+form {
+    @include Mixins.center-all;
+
+    p {
+        text-align: center;
+    }
+
+    input, button {
+        margin: 5px 0;
+    }
+
+    input {
+        box-shadow: 2px 2px 5px rgb(200, 200, 200);
+        height: 1.5em;
+    }
+
+    button {
+        background-color: Colors.$red;
+        font-weight: bold;
+        color: white;
+        padding: 5px;
+        width: 50%;
+    }
+}
+

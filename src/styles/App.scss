@@ -1,0 +1,19 @@
+@use 'Colors';
+
+* {
+  color: Colors.$fonts-light;
+}
+
+body {
+  background-color: Colors.$main-background-light;
+}
+
+p {
+  margin: 0;
+}
+
+input, button {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
