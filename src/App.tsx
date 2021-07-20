@@ -47,6 +47,7 @@ function App(): JSX.Element {
 
     const target = e.target as typeof e.target & {
       formInput : { value:string },  
+      formBtn: HTMLButtonElement
     };
     let inputValue = target.formInput.value;
 
@@ -57,6 +58,8 @@ function App(): JSX.Element {
       setItems(() => getItemsFromStorage())
       setSatus('resolved')
       target.formInput.value = '';
+      target.formBtn.classList.remove('btn-enabled');
+      target.formBtn.classList.add('btn-disabled');
     }, 750);
 
   }

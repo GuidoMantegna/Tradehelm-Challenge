@@ -20,7 +20,7 @@ const AddForm: React.FC<AddFormProps> = ({ onSubmit }) => {
         <form onSubmit={onSubmit}>
             <p>Don't forget to buy:</p>
             <input type="text" name="formInput" required onChange={handleChange}/>
-            <button type="submit" className='btn-disabled'>ADD</button>
+            <button type="submit" name="formBtn" className='btn-disabled'>ADD</button>
         </form>
     );
 };

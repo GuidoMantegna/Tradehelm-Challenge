@@ -39,6 +39,7 @@
         font-weight: bold;
         color: Colors.$main-background-light;
         transition: transform .25s;
+        cursor: pointer;
     }
     button:hover {
         transform: scale(1.1);
