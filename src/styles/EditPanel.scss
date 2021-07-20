@@ -19,15 +19,18 @@
     background-color: Colors.$main-background-light;
     padding: 40px;
     border-radius: 10px;
-    width: 25%;
+    width: 50%;
     @include Mixins.center-all;
 
     p {
         text-align: center;
+        margin-bottom: 15px;
     }
     input {
         height: 1.5em;
-        width: 100%;
+        width: 90%;
+        margin-top: 5px;
+        margin-bottom: 15px;
     }
     button {
         margin: 10px 0;
@@ -56,4 +59,10 @@
 }
 .btn-delete {
     background-color: Colors.$red;
+}
+
+@media screen and (min-width: 768px) {
+    .alert-box {
+        width: 25%;
+    }
 }

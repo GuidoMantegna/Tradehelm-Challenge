@@ -1,6 +1,5 @@
-
 import './styles/App.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // Components
 import ProductsList from './components/ProductsList';
 import AddForm from './components/AddForm';
@@ -24,59 +23,6 @@ function App(): JSX.Element {
 
     return allItems
   };
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [status, setSatus] = useState<string>('idle');
-  const [action, setAction] = useState("");
-  const [items, setItems] = useState<Items[]>(getItemsFromStorage());
-  const [currentItem, setCurrentItem] = useState<Items>({key:"", value:""});
-
-  const editPanelClicks = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as typeof e.target & {
-      editInput : { value:string },
-      className : string, 
-    };
-
-    const editInput = document.getElementById('editInput') as HTMLInputElement;
-    const action = target.className;
-
-    if (action === 'btn-save') {
-      localStorage.setItem(currentItem.key, editInput.value)
-      setItems(() => getItemsFromStorage())
-    }
-    if (action === 'btn-delete') {
-      setSatus('pending');
-      setIsOpen(false);
-      setTimeout(() => {
-        localStorage.removeItem(currentItem.key)
-        setItems(() => getItemsFromStorage())
-        setSatus('resolved')
-      }, 750)
-    }
-
-
-  }
-
-  const productsListClicks = (e: Event): void => {
-    const target = e.target as typeof e.target & {
-      offsetParent : { dataset: {key: string, value: string} },
-      id: string;
-    };
-    const action = target.id;
-    const key = target.offsetParent.dataset.key;
-    const value = target.offsetParent.dataset.value;
-
-    if (action === "edit") {
-      setCurrentItem({key, value});
-      setAction('Edit');
-    } else {
-      setCurrentItem({key, value});
-      setAction("Delete");
-    }
-    setIsOpen(true)
-    
-  }
-  
   const keyGenerator = (word: string) => {
     let i = 0;
     let wordToNum = "";
@@ -88,11 +34,19 @@ function App(): JSX.Element {
     return wordToNum
   }
 
+  const [isOpen, setIsOpen] = useState<boolean>(false),
+  [status, setSatus] = useState<string>('idle'),
+  [action, setAction] = useState(""),
+  [items, setItems] = useState<Items[]>(getItemsFromStorage()),
+  [currentItem, setCurrentItem] = useState<Items>({key:"", value:""});
+
+  // EVENT HANDLERS
+  // -- FORM SUBMIT --
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const target = e.target as typeof e.target & {
-      formInput : { value:string } 
+      formInput : { value:string },  
     };
     let inputValue = target.formInput.value;
 
@@ -102,19 +56,52 @@ function App(): JSX.Element {
       localStorage.setItem(keyGenerator(inputValue), inputValue);
       setItems(() => getItemsFromStorage())
       setSatus('resolved')
-    }, 750)
-
-
+      target.formInput.value = '';
+    }, 750);
 
   }
 
-  useEffect(() => {
-    // setItems(() => getItemsFromStorage())
-  }, )
+  // -- EDIT PANEL --
+  const editPanelClicks = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as typeof e.target & {
+      className : string, 
+    };
+    const editInput = document.getElementById('editInput') as HTMLInputElement;
+    const action = target.className;
+
+    if(action === 'btn-cancel') {
+      setIsOpen(false)
+    } else {
+      setSatus('pending');
+      setTimeout(() => {
+        if(action === 'btn-save') {localStorage.setItem(currentItem.key, editInput.value)};
+        if(action === 'btn-delete') {localStorage.removeItem(currentItem.key)};
+        
+        setItems(() => getItemsFromStorage());
+        setSatus('resolved')
+        setIsOpen(false);
+      }, 750);
+    };
+  }
+
+  // -- ITEM EDIT TOOLS -- 
+  const productsListClicks = (e: Event): void => {
+    const target = e.target as typeof e.target & {
+      offsetParent : { dataset: {key: string, value: string} },
+      id: string;
+    };
+    const action = target.id;
+    const key = target.offsetParent.dataset.key;
+    const value = target.offsetParent.dataset.value;
+
+    setCurrentItem({key, value});
+    action === "edit" ? setAction('Edit') : setAction("Delete");
+    setIsOpen(true);    
+  }
 
   return (
     <>
-      <h1>My market list</h1>
+      <h1>My market list <i className="bi bi-receipt"></i></h1>
       <AddForm
         onSubmit={handleSubmit}
       />
@@ -128,6 +115,7 @@ function App(): JSX.Element {
         action={action} 
         onClick={editPanelClicks}
         currentItem={currentItem}
+        status={status}
       />
     </>
   );

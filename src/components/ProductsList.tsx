@@ -11,9 +11,11 @@ const ProductsList: React.FC<ProductsListProps> = ({ onClick, items, status }) =
 
     if(items.length === 0) {
         return (
-            <div className='post'>
+            status === 'pending'
+            ? <Loader/>
+            :<div className='post'>
                 <p>Your list is empty!</p>
-            </div>
+             </div>
         )
     }
     return (

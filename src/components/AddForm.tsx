@@ -1,5 +1,4 @@
-import '../styles/AddForm.scss'
-import Loader from './Loader';
+import '../styles/AddForm.scss';
 
 interface AddFormProps{
     onSubmit(e: React.FormEvent<HTMLFormElement>): void;

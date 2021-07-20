@@ -34,6 +34,12 @@ ol {
     
 }
 
+.edit-tools {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
 i {
     color: #616161;
     cursor: pointer;
@@ -70,5 +76,20 @@ i:hover {
         right: 43%;
         top: -20px;
         background-color: rgba(65, 105, 225, .9);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .post {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    ol {
+        width: 35%;
+    }
+    .post {
+        width: 20%;
     }
 }
