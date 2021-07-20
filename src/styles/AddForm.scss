@@ -18,11 +18,18 @@ form {
     }
 
     button {
-        background-color: Colors.$red;
         font-weight: bold;
         color: white;
         padding: 5px;
         width: 50%;
+        cursor: pointer;
     }
+}
+
+.btn-enabled {
+    background-color: Colors.$green;
+}
+.btn-disabled {
+    background-color: Colors.$red;
 }
 

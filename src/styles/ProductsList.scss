@@ -40,9 +40,35 @@ i {
 }
 
 i:hover {
-    color: rgb(20, 20, 20);
+    color: #000;
 }
 
 .bi-pencil {
     margin-right: 7.5px;
+}
+
+.post {
+    background-color: #ffce47;
+    width: 45%;
+    height: 25%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+    transform: rotate(-5deg);
+    box-shadow: 2px 3px 2px rgb(100 100 100 / 75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    ::after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 45px;
+        width: 25px;
+        right: 43%;
+        top: -20px;
+        background-color: rgba(65, 105, 225, .9);
+    }
 }

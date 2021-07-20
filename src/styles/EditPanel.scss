@@ -45,9 +45,10 @@
 .buttons {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
-.btn-edit {
+.btn-save {
     background-color: Colors.$green;
 }
 .btn-cancel {
