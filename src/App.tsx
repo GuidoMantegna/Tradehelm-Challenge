@@ -90,16 +90,24 @@ function App(): JSX.Element {
   // -- ITEM EDIT TOOLS -- 
   const productsListClicks = (e: Event): void => {
     const target = e.target as typeof e.target & {
-      offsetParent : { dataset: {key: string, value: string} },
+      offsetParent :  { 
+        dataset: {key: string, value: string},
+        classList: {toggle: (a:string) => void}
+      },
       id: string;
     };
-    const action = target.id;
-    const key = target.offsetParent.dataset.key;
-    const value = target.offsetParent.dataset.value;
 
-    setCurrentItem({key, value});
-    action === "edit" ? setAction('Edit') : setAction("Delete");
-    setIsOpen(true);    
+    const action = target.id,
+    key = target.offsetParent.dataset.key,
+    value = target.offsetParent.dataset.value;
+
+    if(action === "edit" || action === "delete") {
+      setCurrentItem({key, value});
+      action === "edit" ? setAction('Edit') : setAction("Delete");
+      setIsOpen(true);    
+    } else {
+      target.offsetParent.classList.toggle('checked-item')
+    }    
   }
 
   return (
