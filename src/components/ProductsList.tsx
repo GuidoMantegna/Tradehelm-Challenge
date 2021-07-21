@@ -26,7 +26,10 @@ const ProductsList: React.FC<ProductsListProps> = ({ onClick, items, status }) =
                     items.map(item => {
                         return (
                             <li key={item.key} data-key={item.key} data-value={item.value}> 
-                            {item.value}
+                                <p>
+                                    <input type="checkbox" name={item.value} id={item.value} onClick={onClick}/>
+                                    {item.value}
+                                </p>
                                 <div className="edit-tools">
                                     <i className="bi bi-pencil" onClick={onClick} id="edit"></i>
                                     <i className="bi bi-trash" onClick={onClick} id="delete"></i>
