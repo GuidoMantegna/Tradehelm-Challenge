@@ -17,6 +17,10 @@ ol {
         position: relative;
         display: flex;
         justify-content: space-between;
+        
+        input {
+            margin: 0 10px;
+        }
     }
 
     li::before {
