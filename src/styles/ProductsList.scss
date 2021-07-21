@@ -79,6 +79,14 @@ i:hover {
     }
 }
 
+.checked-item {
+    text-decoration:line-through;
+
+    p, i {
+        color: rgb(200, 200, 200);
+    }
+}
+
 @media screen and (min-width: 768px) {
     .post {
         width: 30%;
