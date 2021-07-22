@@ -1,4 +1,5 @@
 import '../styles/ProductsList.scss';
+import ContextEx from './ContextEx';
 import Loader from './Loader';
 
 interface ProductsListProps {
@@ -39,6 +40,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ onClick, items, status }) =
                     })
                 }
             </ol>
+            <ContextEx />
         </>
     );
 };

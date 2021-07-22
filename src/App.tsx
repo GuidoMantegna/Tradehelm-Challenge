@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import ProductsList from './components/ProductsList';
 import AddForm from './components/AddForm';
 import EditPanel from './components/EditPanel';
+// Contexts
+import { ThemeProvider } from './contexts/ThemeContext'
 
 type Items = {
     key: string;
@@ -38,7 +40,8 @@ function App(): JSX.Element {
   [status, setSatus] = useState<string>('idle'),
   [action, setAction] = useState(""),
   [items, setItems] = useState<Items[]>(getItemsFromStorage()),
-  [currentItem, setCurrentItem] = useState<Items>({key:"", value:""});
+  [currentItem, setCurrentItem] = useState<Items>({key:"", value:""}),
+  [theme, setTheme] = useState<string>('light');
 
   // EVENT HANDLERS
   // -- FORM SUBMIT --
@@ -110,8 +113,16 @@ function App(): JSX.Element {
     }    
   }
 
+  const handleCallback = () => {
+    setTheme('light')
+  }
+  const themeValue = {
+    theme: theme,
+    handleCallback: handleCallback
+  }
+
   return (
-    <>
+    <ThemeProvider value={themeValue}>
       <h1>My market list <i className="bi bi-receipt"></i></h1>
       <AddForm
         onSubmit={handleSubmit}
@@ -128,7 +139,7 @@ function App(): JSX.Element {
         currentItem={currentItem}
         status={status}
       />
-    </>
+    </ThemeProvider>
   );
 
 }
